@@ -580,11 +580,9 @@
 <!-- Background music + voice message audio -->
 <audio id="bgMusic" loop preload="none">
   <source src="song.mp3" type="audio/mpeg">
-  <source src="music/song.mp3" type="audio/mpeg">
 </audio>
 <audio id="voiceAudio" preload="none">
   <source src="voice.mp3" type="audio/mpeg">
-  <source src="audio/voice.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Scene navigation dots -->
@@ -706,11 +704,11 @@ const INTRO_LINES = [
 ];
 
 const GALLERY_PHOTOS = [
-  { src: 'photos/1.jpg', caption: 'First Day', emoji: '🌷', grad: 'linear-gradient(135deg,#4a1030,#7a1f3d)' },
-  { src: 'photos/2.jpg', caption: 'That Laugh', emoji: '💫', grad: 'linear-gradient(135deg,#2a1035,#5a2a5f)' },
-  { src: 'photos/3.jpg', caption: 'Our Trip', emoji: '🌹', grad: 'linear-gradient(135deg,#3a0a1a,#8a1f3a)' },
-  { src: 'photos/4.jpg', caption: 'Quiet Moments', emoji: '🕊️', grad: 'linear-gradient(135deg,#1a1a35,#3a2a55)' },
-  { src: 'photos/5.jpg', caption: 'Us', emoji: '💞', grad: 'linear-gradient(135deg,#4a0f25,#9a2a4a)' }
+  { src: '1.jpg', caption: 'First Day', emoji: '🌷', grad: 'linear-gradient(135deg,#4a1030,#7a1f3d)' },
+  { src: '2.jpg', caption: 'That Laugh', emoji: '💫', grad: 'linear-gradient(135deg,#2a1035,#5a2a5f)' },
+  { src: '3.jpg', caption: 'Our Trip', emoji: '🌹', grad: 'linear-gradient(135deg,#3a0a1a,#8a1f3a)' },
+  { src: '4.jpg', caption: 'Quiet Moments', emoji: '🕊️', grad: 'linear-gradient(135deg,#1a1a35,#3a2a55)' },
+  { src: '5.jpg', caption: 'Us', emoji: '💞', grad: 'linear-gradient(135deg,#4a0f25,#9a2a4a)' }
 ];
 
 const TIMELINE_EVENTS = [
@@ -964,26 +962,15 @@ function buildGallery() {
 
     const img = document.createElement('img');
     img.alt = photo.caption;
+    img.src = photo.src;
 
-    // Try the configured path first, then a root-level fallback (same filename,
-    // no "photos/" prefix) — covers both common upload setups automatically.
-    const rootFallback = photo.src.includes('/') ? photo.src.split('/').pop() : null;
-    let triedFallback = false;
-
+    // If photo fails to load, show a lovely fallback instead of ugly broken icon
     img.onerror = () => {
-      if (rootFallback && !triedFallback) {
-        triedFallback = true;
-        img.src = rootFallback;
-        return;
-      }
-      // No real photo found — show a tasteful romantic placeholder instead
-      // of a plain "missing image" note.
       photoDiv.innerHTML = `
         <div class="polaroid-fallback" style="background:${photo.grad}">
           <span class="polaroid-fallback-emoji">${photo.emoji}</span>
         </div>`;
     };
-    img.src = photo.src;
 
     photoDiv.appendChild(img);
     card.appendChild(photoDiv);
