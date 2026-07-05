@@ -1,0 +1,7 @@
+Apni 5 photos yahi is folder mein daalo, naam rakho:
+1.jpg
+2.jpg
+3.jpg
+4.jpg
+5.jpg
+(Exactly lowercase, .jpg extension - tabhi site unhe dhoondh payegi)
