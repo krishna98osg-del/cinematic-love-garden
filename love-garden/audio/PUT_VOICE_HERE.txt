@@ -1,2 +1,0 @@
-Apni voice recording yahi is folder mein daalo, naam rakho: voice.mp3
-(Exactly "voice.mp3" lowercase - tabhi site usse dhoondh payegi)
